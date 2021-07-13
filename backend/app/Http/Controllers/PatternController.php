@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\PatternService;
 
 class PatternController extends Controller
 {
+    private $patternService;
+    public function __construct(PatternService $patternService)
+    {
+        $this->pattern = $patternService;
+    }
     /**
     * パターンAPI コントローラー
     * @param Request リクエスト
@@ -16,11 +22,14 @@ class PatternController extends Controller
     {
         // 初期定義
         $response = [];
+        // 商品情報取得
+        $productInfo = $this->pattern->getProductInfo();
         // json返却テストのため格納する
         $response['pattern'] = $pattern;
-        $response['login_id'] = $request->login_id;
-        $response['ga_id'] = $request->ga_id;
+        $response['login_id'] = $productInfo->login_id;
+        $response['ga_id'] = $productInfo->ga_id;
         $response['product_id_list'] = [];
+        $response['product_id_list']['product_id'] = $productInfo->product_id;
         $response['error_list'] = [];
 
         return response()->json($response);
