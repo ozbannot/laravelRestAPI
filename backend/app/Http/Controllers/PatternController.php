@@ -24,12 +24,14 @@ class PatternController extends Controller
         $response = [];
         // 商品情報取得
         $productInfo = $this->pattern->getProductInfo();
+        // 商品情報取得2
+        $productInfo2 = $this->pattern->getProductInfo2();
         // json返却テストのため格納する
         $response['pattern'] = $pattern;
         $response['login_id'] = $productInfo->login_id;
         $response['ga_id'] = $productInfo->ga_id;
         $response['product_id_list'] = [];
-        $response['product_id_list']['product_id'] = $productInfo->product_id;
+        $response['product_id_list']['product_id'] = $productInfo2->product_id;
         $response['error_list'] = [];
 
         return response()->json($response);

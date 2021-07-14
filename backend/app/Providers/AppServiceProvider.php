@@ -15,7 +15,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(
         \App\Repositories\Test1RepositoryInterface::class,
-        \App\Repositories\Test1Repository::class
+        \App\Repositories\Test1Repository::class,
+        );
+        $this->app->bind(
+        \App\Repositories\Test2RepositoryInterface::class,
+        \App\Repositories\Test2Repository::class
         );
     }
 
