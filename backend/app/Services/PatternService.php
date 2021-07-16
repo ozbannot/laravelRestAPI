@@ -13,15 +13,24 @@ class PatternService
         $this->test1 = $test1;
         $this->test2 = $test2;
     }
-    public function getProductInfo()
+
+    /**
+    * テスト1テーブル情報取得
+    * @return array $result
+    */
+    public function getTest1TableInfo()
     {
-        $result = $this->test1->getProductIdInfo();
+        $result = $this->test1->getTest1TableInfo();
         return $result;
     }
 
-    public function getProductInfo2()
+    /**
+    * テスト2テーブル情報取得
+    * @return array $result2
+    */
+    public function getTest2TableInfo()
     {
-        $result2 = $this->test2->getProductIdInfo();
+        $result2 = $this->test2->getTest2TableInfo();
         return $result2;
     }
 }

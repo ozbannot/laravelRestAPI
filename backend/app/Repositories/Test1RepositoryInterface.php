@@ -5,9 +5,7 @@ namespace App\Repositories;
 interface Test1RepositoryInterface
 {
     /**
-     * 商品情報取得
-     * @param string
-     * @return object
-     */
-    public function getProductIdInfo();
+    * テスト1テーブル情報取得
+    */
+    public function getTest1TableInfo();
 }

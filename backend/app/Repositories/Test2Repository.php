@@ -7,13 +7,12 @@ use App\Models\Test2;
 class Test2Repository implements Test2RepositoryInterface
 {
     /**
-     * 商品情報取得
-     * @param string
-     * @return object
-     */
-    public function getProductIdInfo()
+    * テスト2テーブル情報取得
+    * @return array $result2
+    */
+    public function getTest2TableInfo()
     {
-        $result = Test2::select('*');
-        return $result->first();
+        $result2 = Test2::select('*');
+        return $result2->first();
     }
 }
