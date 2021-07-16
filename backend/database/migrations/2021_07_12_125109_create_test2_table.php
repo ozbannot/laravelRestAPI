@@ -15,12 +15,12 @@ class CreateTest2Table extends Migration
     {
         Schema::create('test2', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('ga_id');
-            $table->integer('login_id')->charset(null)->nullable();
-            $table->dateTime('create_date');
-            $table->dateTime('update_date');
-            $table->tinyInteger('delete_flag')->default(0);
+            $table->integer('product_id'); // 商品ID
+            $table->integer('ga_id'); // gaID
+            $table->integer('login_id')->charset(null)->nullable(); // ログインID
+            $table->dateTime('create_date'); // 作成日時
+            $table->dateTime('update_date'); // 更新日時
+            $table->tinyInteger('delete_flag')->default(0); // 削除フラグ
         });
     }
 

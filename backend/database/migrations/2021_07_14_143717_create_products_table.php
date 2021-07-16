@@ -15,13 +15,13 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->string('product_name');
-            $table->integer('price');
-            $table->integer('brand_id');
-            $table->dateTime('create_date');
-            $table->dateTime('update_date');
-            $table->tinyInteger('delete_flag')->default(0);
+            $table->integer('product_id'); // 商品ID
+            $table->string('product_name'); // 商品名
+            $table->integer('price'); // 価格
+            $table->integer('brand_id'); // ブランド名
+            $table->dateTime('create_date'); // 作成日時
+            $table->dateTime('update_date'); // 更新日時
+            $table->tinyInteger('delete_flag')->default(0); // 削除フラグ
         });
     }
 
