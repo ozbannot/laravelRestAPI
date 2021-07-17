@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PatternService;
+use App\Http\Traits\ConvertResponse;
 
 class PatternController extends Controller
 {
+    use ConvertResponse;
     private $patternService;
     public function __construct(PatternService $patternService)
     {
@@ -27,38 +29,21 @@ class PatternController extends Controller
         $limit = $request->limit ?: null; // 取得数
 
         // パターン1,3
-        if ($pattern === 1 || $pattern === 3) { // TODO ハードコーディング修正
+        if ($pattern === config('const.pattern.one') || $pattern === config('const.pattern.three')) {
             // テスト1テーブル情報取得
             $test1TableInfo = $this->pattern->getTest1TableInfo();
             // json返却のため整形する
-            $response = $this->convertResponseData($pattern,$test1TableInfo);
+            $response = $this->convertPatternResponseData($pattern,$test1TableInfo);
         }
 
         // パターン2
-        if ($pattern === 2) {
+        if ($pattern === config('const.pattern.two')) {
             // テスト2テーブル情報取得
             $test2TableInfo = $this->pattern->getTest2TableInfo();
             // json返却のため整形する
-            $response = $this->convertResponseData($pattern,$test2TableInfo);
+            $response = $this->convertPatternResponseData($pattern,$test2TableInfo);
         }
 
         return response()->json($response);
-    }
-
-    /**
-    * レスポンスデータ整形
-    * @param int $pattern
-    * @param object $tableInfo
-    * @return array $response
-    */
-    public function convertResponseData($pattern,$tableInfo)
-    {
-        $response['pattern'] = $pattern;
-        $response['login_id'] = $tableInfo->login_id;
-        $response['ga_id'] = $tableInfo->ga_id;
-        $response['product_id_list'] = [];
-        $response['product_id_list']['product_id'] = $tableInfo->product_id;
-        $response['error_list'] = [];
-        return $response;
     }
 }
