@@ -16,11 +16,14 @@ class PatternService
 
     /**
     * テスト1テーブル情報取得
-    * @return array $result
+    * @param int $loginId ログインID
+    * @param int $gaId GAID
+    * @param int $limit 取得数
+    * @return object $result
     */
-    public function getTest1TableInfo()
+    public function getTest1TableInfo($loginId,$gaId,$limit)
     {
-        $result = $this->test1->getTest1TableInfo();
+        $result = $this->test1->getTest1TableInfo($loginId,$gaId,$limit);
         return $result;
     }
 
