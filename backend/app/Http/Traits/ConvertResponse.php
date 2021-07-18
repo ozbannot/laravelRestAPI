@@ -9,17 +9,29 @@ trait ConvertResponse {
   /**
   * パターンAPIレスポンスデータ整形
   * @param int $pattern
-  * @param object $tableInfo
+  * @param int $loginId
+  * @param int $gaId
+  * @param object $productInfo
   * @return array $response
   */
-  public function convertPatternResponseData($pattern,$tableInfo)
+  public function convertPatternResponseData($pattern,$loginId,$gaId,$productInfo)
   {
-    $response['pattern'] = $pattern;
-    $response['login_id'] = $tableInfo->login_id;
-    $response['ga_id'] = $tableInfo->ga_id;
-    $response['product_id_list'] = [];
-    $response['product_id_list']['product_id'] = $tableInfo->product_id;
-    $response['error_list'] = [];
+    // TODO 要リファクタ
+    if(!$productInfo) {
+      $response['pattern'] = $pattern;
+      $response['login_id'] = $loginId;
+      $response['ga_id'] = $gaId;
+      $response['product_id_list'] = [];
+      $response['error_list'] = [];
+      return $response;
+    }
+    foreach($productInfo as $key => $info) { // TODO ここの実装は商品情報取得が終わってから
+      $response['pattern'] = $pattern;
+      $response['login_id'] = $loginId;
+      $response['ga_id'] = $gaId;
+      $response['product_id_list'][$key] = $info;
+      $response['error_list'] = [];
+    }
     return $response;
   }
 }
