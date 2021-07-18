@@ -48,8 +48,12 @@ class PatternController extends Controller
         if ($pattern === config('const.pattern.two')) {
             // テスト2テーブル情報取得
             $test2TableInfo = $this->pattern->getTest2TableInfo($loginId,$gaId,$limit);
+            // 商品情報取得
+            if ($test2TableInfo) {
+                $productInfo = $this->product->getProductInfo($test2TableInfo);
+            }
             // json返却のため整形する
-            $response = $this->convertPatternResponseData($pattern,$test2TableInfo);
+            $response = $this->convertPatternResponseData($pattern,$loginId,$gaId,$productInfo);
         }
 
         return response()->json($response);
