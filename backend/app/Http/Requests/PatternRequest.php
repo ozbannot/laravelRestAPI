@@ -41,7 +41,7 @@ class PatternRequest extends FormRequest
      public function validationData()
     {
         return array_merge($this->request->all(), [
-            'pattern' => $this->route('pattern'),
+            'pattern' => $this->pattern,
         ]);
     }
 
