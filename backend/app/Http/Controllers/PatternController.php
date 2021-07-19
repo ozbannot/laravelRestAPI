@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\PatternService;
 use App\Services\ProductService;
 use App\Http\Traits\ConvertResponse;
+use App\Http\Requests\PatternRequest;
 
 class PatternController extends Controller
 {
@@ -23,7 +24,7 @@ class PatternController extends Controller
     * @param int パターン
     * @return json レスポンス返却値
     */
-    public function index(Request $request,int $pattern) // TODO FormRequestにてバリデーション実装
+    public function index(PatternRequest $request,int $pattern) // TODO FormRequestにてバリデーション実装
     {
         // 初期定義
         $response = []; // レスポンス
