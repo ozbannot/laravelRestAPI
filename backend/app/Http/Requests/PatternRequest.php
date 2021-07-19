@@ -47,9 +47,9 @@ class PatternRequest extends FormRequest
 
     protected function failedValidation(Validator $validator) // TODO traitと合わせてリファクタ
     {
-        $response['pattern'] = $this->route('pattern');
-        $response['login_id'] = $this->loginId;
-        $response['ga_id'] = $this->gaId;
+        $response['pattern'] = $this->pattern;
+        $response['login_id'] = $this->request->all()['login_id'] ?? null;
+        $response['ga_id'] = $this->request->all()['ga_id'] ?? null;;
         $response['product_id_list'] = [];
         $response['error_list'] = $validator->errors()->toArray();
         throw new HttpResponseException(response()->json($response,400));
