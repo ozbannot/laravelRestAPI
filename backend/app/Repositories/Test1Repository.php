@@ -19,14 +19,15 @@ class Test1Repository implements Test1RepositoryInterface
         if($limit === null || $limit > config('const.limit.default')) {
           $limit = config('const.limit.default');
         }
-        $result = Test1::select('*')
+        $query = Test1::select('*')
                   ->where('login_id',$loginId)
                   ->limit($limit)
                   ->get();
         // クエリの結果があるかどうか TODO 要リファクタ
-        if ($result->isEmpty()) {
-          $result = null;
+        if ($query->isEmpty()) {
+          return $result = null;
         }
+        $result = $query->toArray();
         return $result;
     }
 }

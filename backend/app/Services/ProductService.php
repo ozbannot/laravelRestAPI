@@ -20,9 +20,15 @@ class ProductService
     public function getProductInfo($test1TableInfo)
     {
       // 各々の商品情報を取得するためにループ
+      /*
       foreach ($test1TableInfo as $key => $test1TableData) {
         $result[$key] = $this->product->getProductInfo($test1TableData->product_id);
       }
+      */
+      foreach ($test1TableInfo as $key => $test1TableData) { 
+        $a[$key] = $test1TableData['product_id'];
+      } 
+      $result[$key] = $this->product->getProductInfo($a);
       return $result;
     }
 }

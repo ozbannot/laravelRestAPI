@@ -6,8 +6,8 @@ interface ProductRepositoryInterface
 {
   /**
   * 商品情報取得
-  * @param object $product_id 商品ID
+  * @param object $test1TableInfo 商品ID群
   * @return object $result
   */
-  public function getProductInfo($product_id);
+  public function getProductInfo($a);
 }
