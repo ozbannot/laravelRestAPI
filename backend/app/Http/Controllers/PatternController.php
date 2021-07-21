@@ -24,7 +24,7 @@ class PatternController extends Controller
     * @param int パターン
     * @return json レスポンス返却値
     */
-    public function index(PatternRequest $request,int $pattern) // TODO FormRequestにてバリデーション実装
+    public function index(PatternRequest $request,int $pattern)
     {
         // 初期定義
         $response = []; // レスポンス
