@@ -15,18 +15,11 @@ class Test2Repository implements Test2RepositoryInterface
     */
     public function getTest2TableInfo($loginId,$gaId,$limit)
     {
-        // 取得数
-        if($limit === null || $limit > config('const.limit.default')) {
-          $limit = config('const.limit.default');
-        }
-        $result = Test2::select('*')
-                  ->where('login_id',$loginId)
-                  ->limit($limit)
-                  ->get();
-        // クエリの結果があるかどうか TODO 要リファクタ
-        if ($result->isEmpty()) {
-          $result = null;
-        }
-        return $result;
+      $query = Test2::select('*')
+                ->where('login_id',$loginId)
+                ->limit($limit)
+                ->get();
+      $result = $query;
+      return $result;
     }
 }
