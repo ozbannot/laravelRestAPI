@@ -16,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 // v1 API
 Route::group(['prefix' => 'v1'], function () {
-    Route::get('pattern/{pattern?}','App\Http\Controllers\PatternController@index');
+    Route::get('pattern/{pattern?}','App\Http\Controllers\V1\PatternController@index');
+});
+// v2 API
+Route::group(['prefix' => 'v2'], function () {
+    Route::get('pattern/{pattern?}','App\Http\Controllers\V2\PatternController@index');
 });
