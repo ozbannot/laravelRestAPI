@@ -14,24 +14,18 @@ trait ConvertResponse {
   * @param object $productInfo
   * @return array $response
   */
-  public function convertPatternResponseData($pattern,$loginId,$gaId,$productInfo)
+  public function convertPatternResponseData($pattern,$loginId,$gaId,$testProductInfo,$test2ProductInfo)
   {
-    // TODO 要リファクタ
-    if(!$productInfo) {
-      $response['pattern'] = $pattern;
-      $response['login_id'] = $loginId;
-      $response['ga_id'] = $gaId;
-      $response['product_id_list'] = [];
-      $response['error_list'] = [];
-      return $response;
-    }
-    foreach($productInfo as $key => $info) { // TODO ここの実装は商品情報取得が終わってから
-      $response['pattern'] = $pattern;
-      $response['login_id'] = $loginId;
-      $response['ga_id'] = $gaId;
-      $response['product_id_list'][$key] = $info;
-      $response['error_list'] = [];
-    }
-    return $response;
+    //初期定義
+    $response = [];
+
+    $response['pattern'] = $pattern;
+    $response['login_id'] = $loginId;
+    $response['ga_id'] = $gaId;
+    $response['test_product_list'] = $testProductInfo;
+    $response['test2_product_list'] = $test2ProductInfo;
+    $response['error_list'] = [];
+
+    return response()->json($response);
   }
 }

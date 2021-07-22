@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Traits\ConvertResponse;
 
 class PatternRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class PatternRequest extends FormRequest
     public function rules()
     {
         return [
-            'pattern' => 'required|integer',
+            'pattern' => 'required|integer|digits:1',
         ];
     }
 
@@ -34,7 +35,8 @@ class PatternRequest extends FormRequest
     {
         return [
             'pattern.required' => 'パターンは必須です',
-            'pattern.integer'  => 'パターンは整数のみです',
+            'pattern.integer'  => 'パターンは数値のみです',
+            'pattern.digits'   => 'パターンは1桁の数値のみです'
         ];
     }
 
@@ -50,8 +52,10 @@ class PatternRequest extends FormRequest
         $response['pattern'] = $this->pattern;
         $response['login_id'] = $this->request->all()['login_id'] ?? null;
         $response['ga_id'] = $this->request->all()['ga_id'] ?? null;;
-        $response['product_id_list'] = [];
-        $response['error_list'] = $validator->errors()->toArray();
+        $response['test_product_list'] = [];
+        $response['test2_product_list'] = [];
+        //dd($validator->errors());
+        $response['error_list'] = $validator->errors()->all();
         throw new HttpResponseException(response()->json($response,400));
     }
 }

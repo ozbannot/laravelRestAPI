@@ -8,6 +8,7 @@ use App\Services\PatternService;
 use App\Services\ProductService;
 use App\Http\Traits\ConvertResponse;
 use App\Http\Requests\PatternRequest;
+// use App\Http\Resources\ProductResource;
 
 class PatternController extends Controller
 {
@@ -39,10 +40,18 @@ class PatternController extends Controller
 
         // テスト情報取得
         $testInfo = $this->pattern->getTestTableInfo($loginId,$gaId,$limit);
+        // テスト商品情報取得
+        $testProductInfo = $this->product->getProductInfo($testInfo);
 
-        // 商品情報取得
-        $productInfo = $this->product->getProductInfo($testInfo);
-        dd($productInfo);
+        // テスト2情報取得
+        $test2Info = $this->pattern->getTest2TableInfo($loginId,$gaId,$limit);
+        // テスト2商品情報取得
+        $test2ProductInfo = $this->product->getProductInfo($test2Info);
+
+        // レスポンス生成
+        $response = $this->convertPatternResponseData($pattern,$loginId,$gaId,$testProductInfo,$test2ProductInfo);
+        return $response;
         
     }
 }
+// 
