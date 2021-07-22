@@ -27,7 +27,22 @@ class PatternController extends Controller
     */
     public function index(PatternRequest $request,int $pattern)
     {
-        // test
-        return response()->json('tasty');
+        // 初期定義
+        $loginId = $request->login_id ?: null; // ログインID
+        $gaId = $request->ga_id ?: null; // GAID
+        $limit = $request->limit ?: null; // 取得数
+
+        // 取得数の再定義
+        if($limit === null || $limit > config('const.limit.default')) {
+          $limit = config('const.limit.default');
+        }
+
+        // テスト情報取得
+        $testInfo = $this->pattern->getTestTableInfo($loginId,$gaId,$limit);
+
+        // 商品情報取得
+        $productInfo = $this->product->getProductInfo($testInfo);
+        dd($productInfo);
+        
     }
 }
