@@ -8,6 +8,7 @@ use App\Services\PatternService;
 use App\Services\ProductService;
 use App\Http\Traits\ConvertResponse;
 use App\Http\Requests\PatternRequest;
+use Illuminate\Support\Facades\Log;
 // use App\Http\Resources\ProductResource;
 
 class PatternController extends Controller
@@ -28,6 +29,9 @@ class PatternController extends Controller
     */
     public function index(PatternRequest $request,int $pattern)
     {
+        // リクエストURLロギング
+        Log::info('リクエストURL取得:',array($request->fullUrl()));
+
         // 初期定義
         $loginId = $request->login_id ?: null; // ログインID
         $gaId = $request->ga_id ?: null; // GAID
@@ -54,4 +58,3 @@ class PatternController extends Controller
         
     }
 }
-// 
