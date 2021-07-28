@@ -2,9 +2,10 @@
 
 return [
   'pattern' => [ // パターン
-    'one' => 1,
-    'two' => 2,
-    'three' => 3
+    'all' => 'all',
+    'one' => 'one',
+    'two' => 'two',
+    'three' => 'three'
   ],
   'limit' => [ // 取得数
     'default' => 36 

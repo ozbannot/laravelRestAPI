@@ -27,35 +27,37 @@ class PatternRequest extends FormRequest
     public function rules()
     {
         return [
-            'pattern' => 'required|integer|digits:1',
+            'pattern.*' => 'required|string|in:all,one,two,three',
         ];
     }
 
     public function messages()
     {
         return [
-            'pattern.required' => 'パターンは必須です',
-            'pattern.integer'  => 'パターンは数値のみです',
-            'pattern.digits'   => 'パターンは1桁の数値のみです'
+            'pattern.*.required' => 'パターンはカンマの前後は必須です',
+            'pattern.*.string'  => 'パターンは文字列のみです',
+            'pattern.*.in'  => 'パターンはall,one,two,threeのみです',
         ];
     }
 
-     public function validationData()
+    protected function prepareForValidation()
     {
-        return array_merge($this->request->all(), [
-            'pattern' => $this->pattern,
-        ]);
+        if ($this->pattern) {
+            $this->merge([
+                'pattern' => explode(',', $this->pattern)
+            ]);
+        }
     }
 
     protected function failedValidation(Validator $validator) // TODO traitと合わせてリファクタ
     {
-        $response['pattern'] = $this->pattern;
+        $response['pattern'] = implode(',', $this->pattern);
         $response['login_id'] = $this->request->all()['login_id'] ?? null;
         $response['ga_id'] = $this->request->all()['ga_id'] ?? null;;
         $response['test_product_list'] = [];
         $response['test2_product_list'] = [];
-        //dd($validator->errors());
-        $response['error_list'] = $validator->errors()->all();
+        // dd($validator->errors()->first());
+        $response['error_list'] = $validator->errors()->first();
         throw new HttpResponseException(response()->json($response,400));
     }
 }
