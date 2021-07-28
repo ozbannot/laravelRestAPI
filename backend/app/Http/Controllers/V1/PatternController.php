@@ -24,19 +24,23 @@ class PatternController extends Controller
     /**
     * パターンAPI コントローラー
     * @param Request リクエスト
-    * @param int パターン
     * @return json レスポンス返却値
     */
-    public function index(PatternRequest $request,int $pattern)
+    public function index(PatternRequest $request)
     {
         // リクエストURLロギング
-        Log::info('リクエストURL取得:',array($request->fullUrl()));
+        Log::info('リクエストURL取得:',array(urldecode($request->fullUrl())));
 
         // 初期定義
+        $pattern = $request->pattern ?: null; // パターン
         $loginId = $request->login_id ?: null; // ログインID
         $gaId = $request->ga_id ?: null; // GAID
         $limit = $request->limit ?: null; // 取得数
 
+        // パターン判定
+        if(in_array(config('const.pattern.all'),$pattern) || $pattern === null) {
+            //dd('a');
+        }
         // 取得数の再定義
         if($limit === null || $limit > config('const.limit.default')) {
           $limit = config('const.limit.default');
