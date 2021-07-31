@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use DB;
 use DateTime;
 
-class TestSeeder extends Seeder
+class Test3Seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,27 +15,27 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('test1')->insert([
+        DB::table('test3')->insert([
         ['id'=>'1',
-        'product_id'=>'99999',
-        'ga_id'=>'11111',
-        'login_id'=>'11222',
+        'product_id'=>'3',
+        'ga_id'=>'1',
+        'login_id'=>'1',
         'create_date'=>new Datetime(),
         'update_date'=>new Datetime(),
         'delete_flag'=>'0'
         ],
         ['id'=>'2',
-        'product_id'=>'88888',
-        'ga_id'=>'11111',
-        'login_id'=>11222,
+        'product_id'=>'1',
+        'ga_id'=>'3',
+        'login_id'=>3,
         'create_date'=>new Datetime(),
         'update_date'=>new Datetime(),
         'delete_flag'=>'0'
         ],
         ['id'=>'3',
-        'product_id'=>'55555',
-        'ga_id'=>'333333',
-        'login_id'=>3333,
+        'product_id'=>'2',
+        'ga_id'=>'3',
+        'login_id'=>3,
         'create_date'=>new Datetime(),
         'update_date'=>new Datetime(),
         'delete_flag'=>'0'

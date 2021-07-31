@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTest2Table extends Migration
+class CreateTest3Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTest2Table extends Migration
      */
     public function up()
     {
-        Schema::create('test2', function (Blueprint $table) {
+        Schema::create('test3', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id'); // 商品ID
             $table->integer('ga_id'); // gaID
@@ -31,6 +31,6 @@ class CreateTest2Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test2');
+        Schema::dropIfExists('test3');
     }
 }
