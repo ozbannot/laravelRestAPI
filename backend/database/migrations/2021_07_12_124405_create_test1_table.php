@@ -17,7 +17,7 @@ class CreateTest1Table extends Migration
             $table->id();
             $table->integer('product_id'); // 商品ID
             $table->integer('ga_id'); // gaID
-            $table->integer('login_id')->charset(null)->nullable(); // ログインID
+            $table->integer('login_id'); // ログインID
             $table->dateTime('create_date'); // 作成日時
             $table->dateTime('update_date'); // 更新日時
             $table->tinyInteger('delete_flag')->default(0); // 削除フラグ

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use DB;
 use DateTime;
 
-class ProductSeeder extends Seeder
+class Test1Seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,30 +15,43 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->insert([
+        DB::table('test1')->insert([
         ['id'=>'1',
         'product_id'=>'1',
-        'product_name'=>'PID1',
-        'price'=>'10000',
-        'brand_id'=>'1',
+        'ga_id'=>'1',
+        'login_id'=>'1',
         'create_date'=>new Datetime(),
         'update_date'=>new Datetime(),
         'delete_flag'=>'0'
         ],
         ['id'=>'2',
         'product_id'=>'2',
-        'product_name'=>'PID2',
-        'price'=>'20000',
-        'brand_id'=>'2',
+        'ga_id'=>'1',
+        'login_id'=>1,
         'create_date'=>new Datetime(),
         'update_date'=>new Datetime(),
         'delete_flag'=>'0'
         ],
         ['id'=>'3',
         'product_id'=>'3',
-        'product_name'=>'PID3',
-        'price'=>'30000',
-        'brand_id'=>'2',
+        'ga_id'=>'1',
+        'login_id'=>1,
+        'create_date'=>new Datetime(),
+        'update_date'=>new Datetime(),
+        'delete_flag'=>'0'
+        ],
+        ['id'=>'4',
+        'product_id'=>'1',
+        'ga_id'=>'2',
+        'login_id'=>2,
+        'create_date'=>new Datetime(),
+        'update_date'=>new Datetime(),
+        'delete_flag'=>'0'
+        ],
+        ['id'=>'5',
+        'product_id'=>'3',
+        'ga_id'=>'3',
+        'login_id'=>3,
         'create_date'=>new Datetime(),
         'update_date'=>new Datetime(),
         'delete_flag'=>'0'
