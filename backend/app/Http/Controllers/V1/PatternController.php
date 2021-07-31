@@ -37,10 +37,6 @@ class PatternController extends Controller
         $gaId = $request->ga_id ?: null; // GAID
         $limit = $request->limit ?: null; // 取得数
 
-        // パターン判定
-        //if(in_array(config('const.pattern.all'),$pattern) || $pattern === null) {
-            //dd('a');
-        //}
         // 取得数の再定義
         if($limit === null || $limit > config('const.limit.default')) {
           $limit = config('const.limit.default');
