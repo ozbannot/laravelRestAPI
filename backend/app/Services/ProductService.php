@@ -14,12 +14,17 @@ class ProductService
 
     /**
     * 商品情報取得
-    * @param object $testInfo テストテーブル情報
+    * @param object $testTableInfo テストテーブル商品ID情報
     * @return object $result
     */
-    public function getProductInfo($testInfo)
+    public function getProductInfo($testTableInfo)
     {
-      $result = $this->product->getProductInfo($testInfo);
-      return $result;
+      $result = [];
+      // テストテーブル群に対してループ処理で商品情報取得する
+      foreach ($testTableInfo as $key => $testTableSingle) {
+        $result[$key] = $this->product->getProductInfo($testTableSingle);
+      }
+      // コレクションに変換
+      return collect($result);
     }
 }
