@@ -8,17 +8,17 @@ class ProductRepository implements ProductRepositoryInterface
 {
   /**
   * 商品情報取得
-  * @param object $testInfo 商品ID群
+  * @param object $testTableSingle テストテーブル商品ID情報
   * @return object $result
   */
-  public function getProductInfo($testInfo)
+  public function getProductInfo($testTableSingle)
   {
     // 商品テーブル
     $query = Product::select('*')
               ->join('product_classes','product_classes.product_id','=','products.product_id')
-              ->whereIn('products.product_id',$testInfo->pluck('product_id'))
+              ->whereIn('products.product_id',$testTableSingle)
               ->get();
     $result = $query;  
-    return $query;
+    return $result;
   }
 }
