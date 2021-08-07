@@ -53,7 +53,7 @@ class PatternRequest extends FormRequest
     {
         $response['pattern'] = implode(',', $this->pattern);
         $response['login_id'] = $this->request->all()['login_id'] ?? null;
-        $response['ga_id'] = $this->request->all()['ga_id'] ?? null;;
+        $response['ga_id'] = $this->request->all()['ga_id'] ?? null;
         $response['test_product_list'] = [];
         $response['test2_product_list'] = [];
         $response['test3_product_list'] = [];
