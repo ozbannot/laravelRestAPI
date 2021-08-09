@@ -19,9 +19,13 @@ class ProductService
     */
     public function getProductInfo($testTableInfo)
     {
-      $result = [];
       // テストテーブル群に対してループ処理で商品情報取得する
       foreach ($testTableInfo as $key => $testTableSingle) {
+        // テストテーブルの情報がない場合は、データアクセスせずに次のループに移る
+        if ($testTableSingle->isEmpty()) {
+          $result[$key] = collect([]);
+          continue;
+        };
         $result[$key] = $this->product->getProductInfo($testTableSingle);
       }
       // コレクションに変換
