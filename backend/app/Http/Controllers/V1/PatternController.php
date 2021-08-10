@@ -9,7 +9,6 @@ use App\Services\ProductService;
 use App\Http\Traits\Convert;
 use App\Http\Requests\PatternRequest;
 use Illuminate\Support\Facades\Log;
-// use App\Http\Resources\ProductResource;
 
 class PatternController extends Controller
 {
