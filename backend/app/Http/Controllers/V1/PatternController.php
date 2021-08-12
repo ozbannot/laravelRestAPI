@@ -27,31 +27,37 @@ class PatternController extends Controller
     */
     public function index(PatternRequest $request)
     {
-        // リクエストURLロギング
-        Log::info('リクエストURL取得:',array(urldecode($request->fullUrl())));
+        try {
+            // リクエストURLロギング
+            Log::info('リクエストURL取得:',array(urldecode($request->fullUrl())));
 
-        // リクエストパラメータ整形
-        $request = $this->convertPatternApiRequest($request);
+            // リクエストパラメータ整形
+            $request = $this->convertPatternApiRequest($request);
 
-        // パターン情報ロギング
-        Log::info('パターン情報:',$request);
+            // パターン情報ロギング
+            Log::info('パターン情報:',$request);
 
-        // テストテーブル情報取得
-        $testTableInfo = $this->pattern->getTestTableInfo($request);
+            // テストテーブル情報取得
+            $testTableInfo = $this->pattern->getTestTableInfo($request);
 
-        // テストテーブル情報ロギング
-        Log::info('テストテーブル情報:',$testTableInfo->toArray());
+            // テストテーブル情報ロギング
+            Log::info('テストテーブル情報:',$testTableInfo->toArray());
 
-        // テスト商品情報取得
-        $testProductInfo = $this->product->getProductInfo($testTableInfo);
+            // テスト商品情報取得
+            $testProductInfo = $this->product->getProductInfo($testTableInfo);
 
-        // レスポンス生成
-        $response = $this->convertPatternResponseData($request,$testProductInfo);
+            // レスポンス生成
+            $response = $this->convertPatternResponseData($request,$testProductInfo);
 
-        // テスト商品情報ロギング
-        Log::info('レスポンス情報:',$response);
+            // テスト商品情報ロギング
+            Log::info('レスポンス情報:',$response);
 
-        // jsonでレスポンス返却
-        return response()->json($response);
+            // jsonでレスポンス返却
+            return response()->json($response);
+        } catch (\Throwable $e) {
+            // 詳細はログに残し、エラーページを返す
+            report($e);
+            abort(500);
+        }
     }
 }
