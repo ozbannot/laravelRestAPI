@@ -1,0 +1,1 @@
+ECSにデプロイされる際はアプリケーションログがCloudwatchLogsに反映されないので、標準出力としてdockerlogに送信してあげる
